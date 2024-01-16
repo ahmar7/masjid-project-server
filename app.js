@@ -6,6 +6,20 @@ const path = require("path");
 const dotnet = require("dotenv").config({
   path: path.resolve(__dirname, ".env"),
 });
+const cron = require("node-cron");
+cron.schedule("*/5 * * * *", () => {
+  // Make a request to a route on your server to keep it warm
+  const axios = require("axios"); // You may need to install axios if not already installed
+  axios
+    .get("https://masjid-project-server.onrender.com")
+    .then((response) => {
+      console.log("Server is warm:");
+    })
+    .catch((error) => {
+      console.error("Error keeping server warm:", error.message);
+    });
+});
+
 const boxModel = require("./models/Boxes");
 const database = require("./db/db");
 app.use(bodyParser.urlencoded({ extended: false }));
