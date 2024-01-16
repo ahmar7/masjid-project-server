@@ -16,7 +16,11 @@ const fs = require("fs");
 //     credentials: true,
 //   })
 // );
-let ALLOWED_ORIGINS = ["https://afghandan.tech", "http://localhost:3000"];
+let ALLOWED_ORIGINS = [
+  "https://afghandan.tech",
+  "http://localhost:3000",
+  "https://masjid-project-client.vercel.app",
+];
 app.use((req, res, next) => {
   let origin = req.headers.origin;
   let theOrigin =
